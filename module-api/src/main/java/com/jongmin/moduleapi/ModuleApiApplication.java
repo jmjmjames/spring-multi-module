@@ -3,7 +3,9 @@ package com.jongmin.moduleapi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication (
+		scanBasePackages = {"com.jongmin.moduleapi", "com.jongmin.modulecommon"}
+)
 public class ModuleApiApplication {
 
 	public static void main(String[] args) {
