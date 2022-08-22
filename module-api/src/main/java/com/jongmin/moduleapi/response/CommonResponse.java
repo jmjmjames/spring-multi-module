@@ -2,9 +2,11 @@ package com.jongmin.moduleapi.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.jongmin.modulecommon.enums.CodeEnum;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 @Builder
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)  // info-> null 이면 제외
 public class CommonResponse<T> {
     private final String returnCode;
