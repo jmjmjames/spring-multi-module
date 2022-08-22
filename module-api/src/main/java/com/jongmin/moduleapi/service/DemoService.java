@@ -1,26 +1,31 @@
 package com.jongmin.moduleapi.service;
 
 import com.jongmin.moduleapi.exception.CustomException;
+import com.jongmin.modulecommon.domain.User;
 import com.jongmin.modulecommon.enums.CodeEnum;
 import com.jongmin.modulecommon.enums.service.CommonDemoService;
+import com.jongmin.modulecommon.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Service
+@Slf4j
 @RequiredArgsConstructor
+@Service
 public class DemoService {
 
     private final CommonDemoService commonDemoService;
+    private final UserRepository userRepository;
 
     public String save() {
-        System.out.println(CodeEnum.SUCCESS.getCode());
-        System.out.println(commonDemoService.commonService());
+        userRepository.save(User.of(Thread.currentThread().getName()));
 
         return "save";
     }
 
     public String find() {
-        System.out.println(CodeEnum.SUCCESS.getCode());
+        long size = userRepository.count();
+        log.info("DB size: {}", size);
         return "find";
     }
 
