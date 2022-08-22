@@ -1,3 +1,5 @@
+profile-name: local
+
 debug: false
 
 # log level 구체적으로 명시

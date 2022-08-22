@@ -7,6 +7,7 @@ import com.jongmin.modulecommon.enums.service.CommonDemoService;
 import com.jongmin.modulecommon.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -14,10 +15,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class DemoService {
 
-    private final CommonDemoService commonDemoService;
     private final UserRepository userRepository;
 
+    @Value("${profile-name}")
+    private String name;
+
     public String save() {
+        log.info("name: {}", name);
+        if (name.equals("local")) {
+            // local code
+            log.info("local: {}", name);
+        } else if (name.equals("beta")) {
+            // beta code
+            log.info("beta: {}", name);
+        }
         userRepository.save(User.of(Thread.currentThread().getName()));
 
         return "save";
